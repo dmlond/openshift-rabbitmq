@@ -42,7 +42,7 @@ RUN ls -la /var/lib/rabbitmq/
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 USER "rabbitmq"
-# CMD "$STI_SCRIPTS_PATH/run"
-# CMD "/docker-entrypoint.sh"
+RUN /usr/sbin/rabbitmq-plugins enable --offline rabbitmq_management
+EXPOSE 15671 15672
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["rabbitmq-server"]
